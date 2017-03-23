@@ -15,8 +15,9 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.setTitle("Order Coffee");
 
         final TextView quantityView = (TextView) findViewById(R.id.quantity_var_xml);
+        TextView submitOrder = (TextView) findViewById(R.id.submit_order_xml);
         android.support.design.widget.FloatingActionButton addQuantity = (android.support.design.widget.FloatingActionButton) findViewById(R.id.quantity_add_xml);
-        android.support.design.widget.FloatingActionButton minusQuantity = (android.support.design.widget.FloatingActionButton) findViewById(R.id.quantity_minus_xml);
+        android.support.design.widget.FloatingActionButton minusQuantity = (android.support.design.widget.FloatingActionButton) findViewById(R.id.quantity_remove_xml);
 
         quantityView.setText(String.valueOf(quantity));
 
