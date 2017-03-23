@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="18dp"
+    android:layout_marginTop="18dp"
     tools:context="com.mastermindapps.justcoffee.MainActivity">
 
     <TextView
@@ -12,6 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:text="Customers info"
+
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
         android:textAppearance="?android:textAppearance"
         android:textColor="#757575" />
 
@@ -23,12 +27,16 @@
         android:layout_marginBottom="12dp"
         android:hint="Name"
         android:inputType="textNoSuggestions|textPersonName"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
         android:padding="8dp"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#212121"
         android:textColorHint="#757575" />
 
     <EditText
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
         android:id="@+id/customer_email_xml"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,6 +49,8 @@
 
 
     <TextView
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
         android:id="@+id/customer_order_xml"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,7 +62,8 @@
         android:textColor="#757575" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/quantity_name_xml"
+        android:layout_marginStart="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/quantity_add_xml"
@@ -70,12 +81,12 @@
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/quantity_minus_xml"
         android:layout_width="wrap_content"
+        app:pressedTranslationZ="20dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/quantity_add_xml"
         android:layout_below="@+id/customer_order_xml"
-        android:layout_margin="8dp"
         android:layout_toStartOf="@+id/quantity_var_xml"
-        android:padding="8dp" />
+        android:padding="16dp" />
 
     <TextView
         android:id="@+id/quantity_var_xml"
@@ -92,11 +103,58 @@
         android:textAppearance="?android:textAppearanceLarge" />
 
     <android.support.design.widget.FloatingActionButton
+        android:layout_marginEnd="12dp"
         android:id="@+id/quantity_add_xml"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/customer_order_xml"
-        android:layout_margin="8dp"
-        android:padding="8dp" />
+        android:padding="16dp" />
+
+    <TextView
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:id="@+id/topping_order_xml"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/quantity_name_xml"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Toppings"
+        android:textAppearance="?android:textAppearance"
+        android:textColor="#757575" />
+
+    <CheckBox
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:id="@+id/whipped_cream_xml"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topping_order_xml"
+        android:layout_marginBottom="12dp"
+        android:text="Whipped Cream"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <CheckBox
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:id="@+id/choco_cream_xml"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/whipped_cream_xml"
+        android:layout_marginBottom="12dp"
+        android:text="Chocolate"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"
+        android:gravity="center"
+        android:padding="18dp"
+        android:text="Long press to confirm order"
+        android:textAlignment="center"
+        android:textAppearance="?android:textAppearanceMedium" />
 </RelativeLayout>
