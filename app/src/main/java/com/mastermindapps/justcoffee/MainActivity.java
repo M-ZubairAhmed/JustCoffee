@@ -111,9 +111,11 @@ public class MainActivity extends AppCompatActivity {
         if (quantityValue == 0) {
             submitOrderButton.setClickable(false);
             submitOrderRoot.setBackgroundColor(Color.LTGRAY);
+            submitOrderButton.setText(R.string.empty_order);
         } else {
             submitOrderButton.setClickable(true);
             submitOrderRoot.setBackgroundColor(COLOR_BROWN);
+            submitOrderButton.setText(R.string.submit_long_press);
         }
     }
 
