@@ -1,26 +1,26 @@
 package com.mastermindapps.justcoffee;
 
-public class Toppings {
+class Toppings {
 
     private String nameOfTopping;
     private int idOfTopping;
-    private float priceOfTopping;
+    private int priceOfTopping;
 
-    public Toppings(String nameOfTopping, int idOfTopping, float priceOfTopping) {
+    protected Toppings(String nameOfTopping, int idOfTopping, int priceOfTopping) {
         this.nameOfTopping = nameOfTopping;
         this.idOfTopping = idOfTopping;
         this.priceOfTopping = priceOfTopping;
     }
 
-    public String getNameOfTopping() {
+    protected String getNameOfTopping() {
         return nameOfTopping;
     }
 
-    public int getIdOfTopping() {
+    protected int getIdOfTopping() {
         return idOfTopping;
     }
 
-    public float getPriceOfTopping() {
+    protected int getPriceOfTopping() {
         return priceOfTopping;
     }
 }

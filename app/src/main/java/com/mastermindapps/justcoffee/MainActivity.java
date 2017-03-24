@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -18,6 +17,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private int basePrice = 40;
+    private int totalCost;
     private TextView submitOrderButton;
     private FrameLayout submitOrderRoot;
     private TextView quantityViewField;
@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 quantityValue++;
                 displayQuantityMethod();
                 submitSwitchMethod();
+                totalCost = cupsPrice(quantityValue);
+                Toast.makeText(MainActivity.this,String.valueOf(totalCost),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -60,13 +62,15 @@ public class MainActivity extends AppCompatActivity {
                     quantityValue--;
                     displayQuantityMethod();
                     submitSwitchMethod();
+                    totalCost = cupsPrice(quantityValue);
+                    Toast.makeText(MainActivity.this,String.valueOf(totalCost),Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
         final ArrayList<Toppings> arrayList = new ArrayList<>();
-        arrayList.add(new Toppings("Oreo",150,2.5F));
-        arrayList.add(new Toppings("Latte",151,12.2F));
+        arrayList.add(new Toppings("Oreo", 150, 2));
+        arrayList.add(new Toppings("Latte", 151, 12));
 
         linearLayToppings = (LinearLayout) findViewById(R.id.topping_linear_xml);
         for (int i = 0; i < arrayList.size(); i++) {
@@ -78,8 +82,14 @@ public class MainActivity extends AppCompatActivity {
             toppingCheckboxes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    Toast.makeText(MainActivity.this,"checked" + arrayList.get(j).getPriceOfTopping(),Toast.LENGTH_SHORT).show();
-
+                    int sum;
+                    if (isChecked) {
+                        sum = priceCalculator(quantityValue, arrayList.get(j).getPriceOfTopping(), true);
+                        Toast.makeText(MainActivity.this, "checked" + String.valueOf(sum), Toast.LENGTH_SHORT).show();
+                    } else {
+                        sum = priceCalculator(quantityValue, arrayList.get(j).getPriceOfTopping(), false);
+                        Toast.makeText(MainActivity.this, "checked" + String.valueOf(sum), Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -101,5 +111,17 @@ public class MainActivity extends AppCompatActivity {
 
     protected int hexColorToInt(int colorResource){
         return ContextCompat.getColor(this,colorResource);
+    }
+
+    protected int priceCalculator(int quantityValue, int toppingPrice, boolean toppingInclude) {
+        int totalPrice = basePrice * quantityValue;
+        if (toppingInclude) {
+            totalPrice = (basePrice * quantityValue) + toppingPrice;
+        }
+        return totalPrice;
+    }
+
+    private int cupsPrice(int quantityValue){
+        return quantityValue * basePrice;
     }
 }
