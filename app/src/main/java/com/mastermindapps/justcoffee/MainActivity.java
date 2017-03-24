@@ -1,12 +1,15 @@
 package com.mastermindapps.justcoffee;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         android.support.design.widget.FloatingActionButton addQuantityButton = (android.support.design.widget.FloatingActionButton) findViewById(R.id.quantity_add_xml);
         android.support.design.widget.FloatingActionButton minusQuantityButton = (android.support.design.widget.FloatingActionButton) findViewById(R.id.quantity_remove_xml);
+        final EditText custName = (EditText) findViewById(R.id.customer_name_xml);
+        final EditText custEmail = (EditText) findViewById(R.id.customer_email_xml);
 
         COLOR_BROWN = hexColorToInt(R.color.colorPrimary);
 
@@ -52,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 displayQuantityMethod();
                 submitSwitchMethod();
             }
-        });0
+        });
 
         minusQuantityButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +76,13 @@ public class MainActivity extends AppCompatActivity {
                 if (quantityValue == 0) {
                     return false;
                 } else {
-                    Toast.makeText(MainActivity.this, String.valueOf(calculateTotal()), Toast.LENGTH_SHORT).show();
+                    if (!TextUtils.isEmpty(custName.getText().toString()) || !TextUtils.isEmpty(custEmail.getText().toString())){
+                        Intent confirmOrderIntent = new Intent(MainActivity.this,OrderConfirmActivity.class);
+                        startActivity(confirmOrderIntent);
+                    }
+                    else {
+                        Toast.makeText(MainActivity.this, "Please add name and email", Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 }
             }
@@ -139,5 +150,17 @@ public class MainActivity extends AppCompatActivity {
 
     protected int dpSizeToPx(int dp){
         return (int)(getResources().getDisplayMetrics().density * dp + 0.5F);
+    }
+
+    protected boolean textChecker(String text, byte type){
+        boolean containsOnlySpace = (text.trim().length() == 0);
+        boolean twoLetterWord = text.trim().length() <= 2;
+        switch (type){
+            case 1:
+                //for name
+            case 2:
+                //for email
+        }
+        return containsOnlySpace;
     }
 }

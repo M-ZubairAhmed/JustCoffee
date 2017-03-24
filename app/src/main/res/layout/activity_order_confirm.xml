@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_margin="16dp"
     android:layout_height="match_parent"
     tools:context="com.mastermindapps.justcoffee.OrderConfirmActivity">
 
@@ -9,13 +10,14 @@
         android:id="@+id/logo"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_margin="16dp"
         android:background="@drawable/app_icon"
         android:backgroundTint="#bebebe"
         android:backgroundTintMode="screen" />
 
     <TextView
         android:layout_width="match_parent"
+        android:id="@+id/logo_title"
+        android:textColor="@color/secondary_text"
         android:layout_alignBottom="@+id/logo"
         android:textAppearance="?android:textAppearance"
         android:layout_toEndOf="@id/logo"
@@ -23,5 +25,48 @@
         android:layout_alignTop="@id/logo"
         android:layout_height="wrap_content"
         android:text="Just Coffee's ordering system\n Rehab, Jeddah, K.S.A" />
+
+    <TextView
+        android:id="@+id/name_summary_xml"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:text="Zubair Ahmed's Order"
+        android:textAlignment="center"
+        android:textAppearance="?android:textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/item_tit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_summary_xml"
+        android:text="Item" />
+
+    <TextView
+        android:id="@+id/quan_tit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_summary_xml"
+        android:layout_toEndOf="@id/item_tit"
+        android:text="Quantity" />
+
+    <TextView
+        android:id="@+id/rate_tit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_summary_xml"
+        android:layout_toEndOf="@id/quan_tit"
+        android:text="Rate" />
+    <TextView
+        android:id="@+id/price_tit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_summary_xml"
+        android:layout_toEndOf="@id/rate_tit"
+        android:text="Price" />
+
 
 </RelativeLayout>
