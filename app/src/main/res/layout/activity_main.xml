@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:layout_marginEnd="12dp"
-
         android:layout_marginStart="12dp"
         android:text="Customers info"
         android:textAppearance="?android:textAppearance"
@@ -23,7 +22,7 @@
         android:id="@+id/customer_name_xml"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/customer_info_xml"
+        android:layout_below="@id/customer_info_xml"
         android:layout_marginBottom="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginStart="12dp"
@@ -38,7 +37,7 @@
         android:id="@+id/customer_email_xml"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/customer_name_xml"
+        android:layout_below="@id/customer_name_xml"
         android:layout_marginEnd="12dp"
         android:layout_marginStart="12dp"
         android:hint="Email"
@@ -52,7 +51,7 @@
         android:id="@+id/customer_order_xml"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/customer_email_xml"
+        android:layout_below="@id/customer_email_xml"
         android:layout_marginBottom="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginStart="12dp"
@@ -66,13 +65,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/quantity_remove_xml"
-        android:layout_alignBottom="@+id/quantity_add_xml"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/quantity_add_xml"
-        android:layout_below="@+id/customer_order_xml"
+        android:layout_below="@id/customer_order_xml"
         android:layout_marginStart="12dp"
-        android:layout_toStartOf="@+id/quantity_add_xml"
+        android:layout_toStartOf="@id/quantity_add_xml"
         android:gravity="center_vertical"
         android:padding="8dp"
         android:text="Quantity"
@@ -83,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/quantity_remove_xml"
-        android:layout_below="@+id/customer_order_xml"
+        android:layout_below="@id/customer_order_xml"
         android:layout_toStartOf="@+id/quantity_var_xml"
         android:padding="16dp"
         app:srcCompat="@drawable/add_white_48x48" />
@@ -94,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/quantity_add_xml"
         android:layout_alignTop="@+id/quantity_add_xml"
-        android:layout_below="@+id/customer_order_xml"
+        android:layout_below="@id/customer_order_xml"
         android:layout_toStartOf="@+id/quantity_remove_xml"
         android:gravity="center"
         android:maxLines="1"
@@ -108,16 +105,16 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/customer_order_xml"
+        android:layout_below="@id/customer_order_xml"
         android:layout_marginEnd="12dp"
-        app:srcCompat="@drawable/remove_white_48x48"
-        android:padding="16dp"/>
+        android:padding="16dp"
+        app:srcCompat="@drawable/remove_white_48x48" />
 
     <TextView
         android:id="@+id/topping_order_xml"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/quantity_name_xml"
+        android:layout_below="@id/quantity_name_xml"
         android:layout_marginBottom="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginStart="12dp"
@@ -130,7 +127,7 @@
         android:id="@+id/whipped_cream_xml"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/topping_order_xml"
+        android:layout_below="@id/topping_order_xml"
         android:layout_marginBottom="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginStart="12dp"
@@ -141,30 +138,32 @@
         android:id="@+id/choco_cream_xml"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/whipped_cream_xml"
+        android:layout_below="@id/whipped_cream_xml"
         android:layout_marginBottom="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginStart="12dp"
         android:text="Chocolate"
         android:textAppearance="?android:textAppearanceMedium" />
+
     <FrameLayout
+        android:id="@+id/submit_order_root_xml"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:id="@+id/submit_order_root_xml"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary">
+
         <TextView
+            android:id="@+id/submit_order_xml"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/submit_order_xml"
             android:background="?android:selectableItemBackground"
             android:clickable="true"
-            android:textColor="@color/icons"
             android:gravity="center"
             android:padding="18dp"
             android:text="Long press to confirm order"
             android:textAlignment="center"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/icons" />
     </FrameLayout>
 
 </RelativeLayout>
