@@ -1,6 +1,7 @@
 package com.mastermindapps.justcoffee;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout linearLayToppings;
     private int COLOR_BROWN;
     private int quantityValue = 0;
+    private int CHECKBOX_PAD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         android.support.design.widget.FloatingActionButton minusQuantityButton = (android.support.design.widget.FloatingActionButton) findViewById(R.id.quantity_remove_xml);
 
         COLOR_BROWN = hexColorToInt(R.color.colorPrimary);
+        CHECKBOX_PAD = dpSizeToPx(12);
 
         displayQuantityMethod();
         submitSwitchMethod();
@@ -116,18 +119,28 @@ public class MainActivity extends AppCompatActivity {
     protected void addToppingsToList(){
         toppingCheckboxList = new ArrayList<>();
 
-        toppingCheckboxList.add(new ToppingsDataType("Oreo", 150, 2));
-        toppingCheckboxList.add(new ToppingsDataType("Latte", 151, 12));
+        toppingCheckboxList.add(new ToppingsDataType("Whipped Cream", 150, 2));
+        toppingCheckboxList.add(new ToppingsDataType("Chocolate", 151, 12));
     }
 
     protected void addToppingsToView(){
         linearLayToppings = (LinearLayout) findViewById(R.id.topping_linear_xml);
-        
+
         for (int i = 0; i < toppingCheckboxList.size(); i++) {
             toppingCheckboxes = new CheckBox(this);
             toppingCheckboxes.setText(toppingCheckboxList.get(i).getNameOfTopping());
+            if (Build.VERSION.SDK_INT < 23){
+                toppingCheckboxes.setTextAppearance(this,android.R.style.TextAppearance_Medium);
+            }
+            else {
+                toppingCheckboxes.setTextAppearance(android.R.style.TextAppearance_Medium);
+            }
             toppingCheckboxes.setId(toppingCheckboxList.get(i).getIdOfTopping());
             linearLayToppings.addView(toppingCheckboxes);
         }
+    }
+
+    protected int dpSizeToPx(int dp){
+        return (int)(getResources().getDisplayMetrics().density * dp + 0.5F);
     }
 }
