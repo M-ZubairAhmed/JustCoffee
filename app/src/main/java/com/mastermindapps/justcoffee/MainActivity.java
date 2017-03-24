@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox toppingCheckboxes;
     private LinearLayout linearLayToppings;
     private int COLOR_BROWN;
-    private int quantityValue = 1;
+    private int quantityValue = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         COLOR_BROWN = hexColorToInt(R.color.colorPrimary);
 
         displayQuantityMethod();
+        submitSwitchMethod();
 
         addQuantityButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 displayQuantityMethod();
                 submitSwitchMethod();
                 totalCost = cupsPrice(quantityValue);
-                Toast.makeText(MainActivity.this,String.valueOf(totalCost),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -63,7 +63,19 @@ public class MainActivity extends AppCompatActivity {
                     displayQuantityMethod();
                     submitSwitchMethod();
                     totalCost = cupsPrice(quantityValue);
+                }
+            }
+        });
+
+        submitOrderButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (quantityValue == 0){
+                    return false;
+                }
+                else {
                     Toast.makeText(MainActivity.this,String.valueOf(totalCost),Toast.LENGTH_SHORT).show();
+                    return true;
                 }
             }
         });
