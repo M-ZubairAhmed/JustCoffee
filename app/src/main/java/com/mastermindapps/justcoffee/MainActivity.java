@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -72,6 +74,12 @@ public class MainActivity extends AppCompatActivity {
             toppingCheckboxes.setText(arrayList.get(i).getNameOfTopping());
             toppingCheckboxes.setId(arrayList.get(i).getIdOfTopping());
             linearLayToppings.addView(toppingCheckboxes);
+            toppingCheckboxes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    Toast.makeText(MainActivity.this,"checked",Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
