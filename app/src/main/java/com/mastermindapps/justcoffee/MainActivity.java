@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,11 +16,11 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private int basePrice = 40;
-    private int totalCost;
     private TextView submitOrderButton;
     private FrameLayout submitOrderRoot;
     private TextView quantityViewField;
     private CheckBox toppingCheckboxes;
+    private ArrayList<Toppings> toppingCheckboxList;
     private LinearLayout linearLayToppings;
     private int COLOR_BROWN;
     private int quantityValue = 0;
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 quantityValue++;
                 displayQuantityMethod();
                 submitSwitchMethod();
-                totalCost = cupsPrice(quantityValue);
             }
         });
 
@@ -62,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                     quantityValue--;
                     displayQuantityMethod();
                     submitSwitchMethod();
-                    totalCost = cupsPrice(quantityValue);
                 }
             }
         });
@@ -70,40 +67,25 @@ public class MainActivity extends AppCompatActivity {
         submitOrderButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if (quantityValue == 0){
+                if (quantityValue == 0) {
                     return false;
-                }
-                else {
-                    Toast.makeText(MainActivity.this,String.valueOf(totalCost),Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, String.valueOf(calculateTotal()), Toast.LENGTH_SHORT).show();
                     return true;
                 }
             }
         });
 
-        final ArrayList<Toppings> arrayList = new ArrayList<>();
-        arrayList.add(new Toppings("Oreo", 150, 2));
-        arrayList.add(new Toppings("Latte", 151, 12));
+        toppingCheckboxList = new ArrayList<>();
+        toppingCheckboxList.add(new Toppings("Oreo", 150, 2));
+        toppingCheckboxList.add(new Toppings("Latte", 151, 12));
 
         linearLayToppings = (LinearLayout) findViewById(R.id.topping_linear_xml);
-        for (int i = 0; i < arrayList.size(); i++) {
+        for (int i = 0; i < toppingCheckboxList.size(); i++) {
             toppingCheckboxes = new CheckBox(this);
-            toppingCheckboxes.setText(arrayList.get(i).getNameOfTopping());
-            toppingCheckboxes.setId(arrayList.get(i).getIdOfTopping());
+            toppingCheckboxes.setText(toppingCheckboxList.get(i).getNameOfTopping());
+            toppingCheckboxes.setId(toppingCheckboxList.get(i).getIdOfTopping());
             linearLayToppings.addView(toppingCheckboxes);
-            final int j = i;
-            toppingCheckboxes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    int sum;
-                    if (isChecked) {
-                        sum = priceCalculator(quantityValue, arrayList.get(j).getPriceOfTopping(), true);
-                        Toast.makeText(MainActivity.this, "checked" + String.valueOf(sum), Toast.LENGTH_SHORT).show();
-                    } else {
-                        sum = priceCalculator(quantityValue, arrayList.get(j).getPriceOfTopping(), false);
-                        Toast.makeText(MainActivity.this, "checked" + String.valueOf(sum), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
         }
     }
 
@@ -123,19 +105,18 @@ public class MainActivity extends AppCompatActivity {
         quantityViewField.setText(String.valueOf(quantityValue));
     }
 
-    protected int hexColorToInt(int colorResource){
-        return ContextCompat.getColor(this,colorResource);
+    protected int hexColorToInt(int colorResource) {
+        return ContextCompat.getColor(this, colorResource);
     }
 
-    protected int priceCalculator(int quantityValue, int toppingPrice, boolean toppingInclude) {
-        int totalPrice = basePrice * quantityValue;
-        if (toppingInclude) {
-            totalPrice = (basePrice * quantityValue) + toppingPrice;
+    protected int calculateTotal(){
+        int sum = quantityValue * basePrice;
+        for (int j = 0; j < toppingCheckboxList.size(); j++) {
+            CheckBox toppingCheckboxVerify = (CheckBox) findViewById(toppingCheckboxList.get(j).getIdOfTopping());
+            if (toppingCheckboxVerify.isChecked()){
+                sum = sum + (quantityValue * toppingCheckboxList.get(j).getPriceOfTopping());
+            }
         }
-        return totalPrice;
-    }
-
-    private int cupsPrice(int quantityValue){
-        return quantityValue * basePrice;
+        return sum;
     }
 }
