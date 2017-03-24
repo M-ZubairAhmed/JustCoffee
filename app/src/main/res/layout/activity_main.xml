@@ -123,27 +123,36 @@
         android:textAppearance="?android:textAppearance"
         android:textColor="#757575" />
 
-    <CheckBox
-        android:id="@+id/whipped_cream_xml"
+
+    <LinearLayout
+        android:id="@+id/topping_linear_xml"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/topping_order_xml"
-        android:layout_marginBottom="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginStart="12dp"
-        android:text="Whipped Cream"
-        android:textAppearance="?android:textAppearanceMedium" />
+        android:orientation="vertical">
 
-    <CheckBox
-        android:id="@+id/choco_cream_xml"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/whipped_cream_xml"
-        android:layout_marginBottom="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginStart="12dp"
-        android:text="Chocolate"
-        android:textAppearance="?android:textAppearanceMedium" />
+        <CheckBox
+            android:id="@+id/whipped_cream_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:text="Whipped Cream"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <CheckBox
+            android:id="@+id/choco_cream_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:text="Chocolate"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/submit_order_root_xml"

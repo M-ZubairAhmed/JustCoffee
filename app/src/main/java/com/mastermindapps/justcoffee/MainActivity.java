@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -58,8 +59,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
+        ArrayList<Toppings> arrayList = new ArrayList<>();
+        arrayList.add(new Toppings("Oreo",150,2.5F));
+        arrayList.add(new Toppings("Latte",151,12.2F));
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.topping_linear_xml);
+        TextView textView = new TextView(this);
+        textView.setText(arrayList.get(1).getNameOfTopping());
+        linearLayout.addView(textView);
     }
 
     protected void submitSwitchMethod() {
