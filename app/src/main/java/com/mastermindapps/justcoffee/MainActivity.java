@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 displayQuantityMethod();
                 submitSwitchMethod();
             }
-        });
+        });0
 
         minusQuantityButton.setOnClickListener(new View.OnClickListener() {
             @Override
