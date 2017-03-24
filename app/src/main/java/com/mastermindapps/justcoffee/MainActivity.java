@@ -78,6 +78,18 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     if (!TextUtils.isEmpty(custName.getText().toString()) || !TextUtils.isEmpty(custEmail.getText().toString())){
                         Intent confirmOrderIntent = new Intent(MainActivity.this,OrderConfirmActivity.class);
+                        confirmOrderIntent.putExtra("name", custName.getText().toString());
+                        confirmOrderIntent.putExtra("name", custEmail.getText().toString());
+                        confirmOrderIntent.putExtra("quantity", quantityValue);
+                        confirmOrderIntent.putExtra("baseprice", basePrice);
+                        confirmOrderIntent.putExtra("totalprice", calculateTotal());
+                        for (int i = 0; i < toppingCheckboxList.size(); i++) {
+                            CheckBox toppingCheckboxVerify = (CheckBox) findViewById(toppingCheckboxList.get(i).getIdOfTopping());
+                            if (toppingCheckboxVerify.isChecked()) {
+                                confirmOrderIntent.putExtra("topping"+i,toppingCheckboxVerify.getText().toString());
+                            }
+                        }
+
                         startActivity(confirmOrderIntent);
                     }
                     else {
