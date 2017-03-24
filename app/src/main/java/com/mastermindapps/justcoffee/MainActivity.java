@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout linearLayToppings;
     private int COLOR_BROWN;
     private int quantityValue = 0;
-    private int CHECKBOX_PAD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         android.support.design.widget.FloatingActionButton minusQuantityButton = (android.support.design.widget.FloatingActionButton) findViewById(R.id.quantity_remove_xml);
 
         COLOR_BROWN = hexColorToInt(R.color.colorPrimary);
-        CHECKBOX_PAD = dpSizeToPx(12);
 
         displayQuantityMethod();
         submitSwitchMethod();
@@ -80,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         addToppingsToList();
-
         addToppingsToView();
     }
 
