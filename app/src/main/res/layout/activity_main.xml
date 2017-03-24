@@ -169,7 +169,7 @@
             android:clickable="true"
             android:gravity="center"
             android:padding="18dp"
-            android:text="Long press to confirm order"
+            android:text="@string/submit_long_press"
             android:textAlignment="center"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/icons" />

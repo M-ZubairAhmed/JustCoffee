@@ -1,12 +1,12 @@
 package com.mastermindapps.justcoffee;
 
-class Toppings {
+class ToppingsDataType {
 
     private String nameOfTopping;
     private int idOfTopping;
     private int priceOfTopping;
 
-    protected Toppings(String nameOfTopping, int idOfTopping, int priceOfTopping) {
+    protected ToppingsDataType(String nameOfTopping, int idOfTopping, int priceOfTopping) {
         this.nameOfTopping = nameOfTopping;
         this.idOfTopping = idOfTopping;
         this.priceOfTopping = priceOfTopping;

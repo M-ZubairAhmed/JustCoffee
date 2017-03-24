@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout submitOrderRoot;
     private TextView quantityViewField;
     private CheckBox toppingCheckboxes;
-    private ArrayList<Toppings> toppingCheckboxList;
+    private ArrayList<ToppingsDataType> toppingCheckboxList;
     private LinearLayout linearLayToppings;
     private int COLOR_BROWN;
     private int quantityValue = 0;
@@ -76,18 +76,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        toppingCheckboxList = new ArrayList<>();
-        toppingCheckboxList.add(new Toppings("Oreo", 150, 2));
-        toppingCheckboxList.add(new Toppings("Latte", 151, 12));
+        addToppingsToList();
 
-        linearLayToppings = (LinearLayout) findViewById(R.id.topping_linear_xml);
-        for (int i = 0; i < toppingCheckboxList.size(); i++) {
-            toppingCheckboxes = new CheckBox(this);
-            toppingCheckboxes.setText(toppingCheckboxList.get(i).getNameOfTopping());
-            toppingCheckboxes.setId(toppingCheckboxList.get(i).getIdOfTopping());
-            linearLayToppings.addView(toppingCheckboxes);
-        }
+        addToppingsToView();
     }
+
 
     protected void submitSwitchMethod() {
         if (quantityValue == 0) {
@@ -118,5 +111,23 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return sum;
+    }
+
+    protected void addToppingsToList(){
+        toppingCheckboxList = new ArrayList<>();
+
+        toppingCheckboxList.add(new ToppingsDataType("Oreo", 150, 2));
+        toppingCheckboxList.add(new ToppingsDataType("Latte", 151, 12));
+    }
+
+    protected void addToppingsToView(){
+        linearLayToppings = (LinearLayout) findViewById(R.id.topping_linear_xml);
+        
+        for (int i = 0; i < toppingCheckboxList.size(); i++) {
+            toppingCheckboxes = new CheckBox(this);
+            toppingCheckboxes.setText(toppingCheckboxList.get(i).getNameOfTopping());
+            toppingCheckboxes.setId(toppingCheckboxList.get(i).getIdOfTopping());
+            linearLayToppings.addView(toppingCheckboxes);
+        }
     }
 }
