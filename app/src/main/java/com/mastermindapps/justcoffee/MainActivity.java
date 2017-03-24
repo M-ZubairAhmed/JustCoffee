@@ -13,10 +13,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView submitOrderButton;
-    FrameLayout submitOrderRoot;
-    TextView quantityViewField;
-    int COLOR_BROWN;
+    private int basePrice = 40;
+    private TextView submitOrderButton;
+    private FrameLayout submitOrderRoot;
+    private TextView quantityViewField;
+    private int COLOR_BROWN;
     private int quantityValue = 1;
 
     @Override
