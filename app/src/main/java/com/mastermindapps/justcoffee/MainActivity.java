@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<Toppings> arrayList = new ArrayList<>();
+        final ArrayList<Toppings> arrayList = new ArrayList<>();
         arrayList.add(new Toppings("Oreo",150,2.5F));
         arrayList.add(new Toppings("Latte",151,12.2F));
 
@@ -74,10 +74,12 @@ public class MainActivity extends AppCompatActivity {
             toppingCheckboxes.setText(arrayList.get(i).getNameOfTopping());
             toppingCheckboxes.setId(arrayList.get(i).getIdOfTopping());
             linearLayToppings.addView(toppingCheckboxes);
+            final int j = i;
             toppingCheckboxes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    Toast.makeText(MainActivity.this,"checked",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"checked" + arrayList.get(j).getPriceOfTopping(),Toast.LENGTH_SHORT).show();
+
                 }
             });
         }
