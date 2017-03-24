@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView submitOrderButton;
     private FrameLayout submitOrderRoot;
     private TextView quantityViewField;
+    private CheckBox toppingCheckboxes;
+    private LinearLayout linearLayToppings;
     private int COLOR_BROWN;
     private int quantityValue = 1;
 
@@ -62,10 +65,14 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Toppings> arrayList = new ArrayList<>();
         arrayList.add(new Toppings("Oreo",150,2.5F));
         arrayList.add(new Toppings("Latte",151,12.2F));
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.topping_linear_xml);
-        TextView textView = new TextView(this);
-        textView.setText(arrayList.get(1).getNameOfTopping());
-        linearLayout.addView(textView);
+
+        linearLayToppings = (LinearLayout) findViewById(R.id.topping_linear_xml);
+        for (int i = 0; i < arrayList.size(); i++) {
+            toppingCheckboxes = new CheckBox(this);
+            toppingCheckboxes.setText(arrayList.get(i).getNameOfTopping());
+            toppingCheckboxes.setId(arrayList.get(i).getIdOfTopping());
+            linearLayToppings.addView(toppingCheckboxes);
+        }
     }
 
     protected void submitSwitchMethod() {
