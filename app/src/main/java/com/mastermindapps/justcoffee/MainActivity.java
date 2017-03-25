@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout linearLayToppings;
     private int COLOR_BROWN;
     private int quantityValue = 0;
+    private int arraySize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,18 +80,19 @@ public class MainActivity extends AppCompatActivity {
                     if (!TextUtils.isEmpty(custName.getText().toString()) || !TextUtils.isEmpty(custEmail.getText().toString())){
                         Intent confirmOrderIntent = new Intent(MainActivity.this,OrderConfirmActivity.class);
                         confirmOrderIntent.putExtra("name", custName.getText().toString());
-                        confirmOrderIntent.putExtra("name", custEmail.getText().toString());
+                        confirmOrderIntent.putExtra("email", custEmail.getText().toString());
                         confirmOrderIntent.putExtra("quantity", quantityValue);
                         confirmOrderIntent.putExtra("baseprice", basePrice);
                         confirmOrderIntent.putExtra("totalprice", calculateTotal());
-                        for (int i = 0; i < toppingCheckboxList.size(); i++) {
+                        confirmOrderIntent.putExtra("arraysize",arraySize);
+                        for (int i = 0; i < arraySize; i++) {
                             CheckBox toppingCheckboxVerify = (CheckBox) findViewById(toppingCheckboxList.get(i).getIdOfTopping());
                             if (toppingCheckboxVerify.isChecked()) {
                                 confirmOrderIntent.putExtra("topping"+i,toppingCheckboxVerify.getText().toString());
                             }
                         }
 
-                        startActivity(confirmOrderIntent);
+                        startActivityForResult(confirmOrderIntent,1001);
                     }
                     else {
                         Toast.makeText(MainActivity.this, "Please add name and email", Toast.LENGTH_SHORT).show();
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected int calculateTotal(){
         int sum = quantityValue * basePrice;
-        for (int j = 0; j < toppingCheckboxList.size(); j++) {
+        for (int j = 0; j < arraySize; j++) {
             CheckBox toppingCheckboxVerify = (CheckBox) findViewById(toppingCheckboxList.get(j).getIdOfTopping());
             if (toppingCheckboxVerify.isChecked()){
                 sum = sum + (quantityValue * toppingCheckboxList.get(j).getPriceOfTopping());
@@ -138,15 +140,15 @@ public class MainActivity extends AppCompatActivity {
 
     protected void addToppingsToList(){
         toppingCheckboxList = new ArrayList<>();
-
         toppingCheckboxList.add(new ToppingsDataType("Whipped Cream", 150, 2));
         toppingCheckboxList.add(new ToppingsDataType("Chocolate", 151, 12));
+        arraySize = toppingCheckboxList.size();
     }
 
     protected void addToppingsToView(){
         linearLayToppings = (LinearLayout) findViewById(R.id.topping_linear_xml);
 
-        for (int i = 0; i < toppingCheckboxList.size(); i++) {
+        for (int i = 0; i < arraySize; i++) {
             toppingCheckboxes = new CheckBox(this);
             toppingCheckboxes.setText(toppingCheckboxList.get(i).getNameOfTopping());
             if (Build.VERSION.SDK_INT < 23){
