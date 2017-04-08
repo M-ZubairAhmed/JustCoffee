@@ -14,10 +14,10 @@ public class OrderConfirmActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         TextView name = (TextView) findViewById(R.id.name_summary_xml);
-        name.setText(bundle.getString("name") + "'s Order");
+        name.setText(bundle.getString("name") + "\'s Order");
         int arraysize = bundle.getInt("arraysize");
         for (int i = 0; i < arraysize; i++) {
-            String ch
+//            String ch
         }
     }
 }

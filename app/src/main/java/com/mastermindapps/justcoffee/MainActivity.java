@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -110,11 +111,13 @@ public class MainActivity extends AppCompatActivity {
     protected void submitSwitchMethod() {
         if (quantityValue == 0) {
             submitOrderButton.setClickable(false);
-            submitOrderRoot.setBackgroundColor(Color.LTGRAY);
+            submitOrderButton.setBackgroundColor(Color.LTGRAY);
             submitOrderButton.setText(R.string.empty_order);
         } else {
             submitOrderButton.setClickable(true);
-            submitOrderRoot.setBackgroundColor(COLOR_BROWN);
+            TypedValue outValue = new TypedValue();
+            getApplicationContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+            submitOrderButton.setBackgroundResource(outValue.resourceId);
             submitOrderButton.setText(R.string.submit_long_press);
         }
     }
